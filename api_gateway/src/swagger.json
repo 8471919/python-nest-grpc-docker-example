@@ -1,0 +1,159 @@
+{
+  "openapi": "3.0.1",
+  "servers": [
+    {
+      "url": "http://localhost:3000",
+      "description": "Local Server"
+    }
+  ],
+  "info": {
+    "version": "0.0.1",
+    "title": "api_gateway",
+    "description": ""
+  },
+  "paths": {
+    "/": {
+      "get": {
+        "tags": [],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "x-nestia-encrypted": false
+          }
+        },
+        "x-nestia-namespace": "getHello",
+        "x-nestia-jsDocTags": []
+      }
+    },
+    "/api/v1/img_cl": {
+      "post": {
+        "tags": [],
+        "parameters": [],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BinaryData"
+              }
+            }
+          },
+          "required": true,
+          "x-nestia-encrypted": false
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ModelReturn"
+                }
+              }
+            },
+            "x-nestia-encrypted": false
+          }
+        },
+        "x-nestia-namespace": "api.v1.img_cl.getLabel",
+        "x-nestia-jsDocTags": []
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "BinaryData": {
+        "oneOf": [
+          {
+            "$ref": "#/components/objects/ArrayBuffer"
+          },
+          {
+            "$ref": "#/components/schemas/ArrayBufferView"
+          }
+        ]
+      },
+      "ArrayBuffer": {
+        "type": "object",
+        "properties": {},
+        "nullable": false
+      },
+      "ArrayBufferView": {
+        "type": "object",
+        "properties": {
+          "buffer": {
+            "$ref": "#/components/schemas/ArrayBufferLike"
+          },
+          "byteLength": {
+            "description": "The length in bytes of the array.",
+            "x-typia-required": true,
+            "x-typia-optional": false,
+            "type": "number"
+          },
+          "byteOffset": {
+            "description": "The offset in bytes of the array.",
+            "x-typia-required": true,
+            "x-typia-optional": false,
+            "type": "number"
+          }
+        },
+        "nullable": false,
+        "required": [
+          "buffer",
+          "byteLength",
+          "byteOffset"
+        ],
+        "description": "The offset in bytes of the array.",
+        "x-typia-jsDocTags": []
+      },
+      "ArrayBufferLike": {
+        "oneOf": [
+          {
+            "$ref": "#/components/objects/ArrayBuffer"
+          },
+          {
+            "$ref": "#/components/objects/SharedArrayBuffer"
+          }
+        ]
+      },
+      "SharedArrayBuffer": {
+        "type": "object",
+        "properties": {},
+        "nullable": false
+      },
+      "ModelReturn": {
+        "type": "object",
+        "properties": {
+          "label": {
+            "x-typia-required": true,
+            "x-typia-optional": false,
+            "type": "string"
+          }
+        },
+        "nullable": false,
+        "required": [
+          "label"
+        ],
+        "x-typia-jsDocTags": []
+      }
+    },
+    "securitySchemes": {
+      "bearer": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "Authorization"
+      }
+    }
+  },
+  "security": [
+    {
+      "bearer": []
+    }
+  ]
+}
