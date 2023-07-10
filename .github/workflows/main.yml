@@ -47,9 +47,14 @@ jobs:
 
   deploy:
     needs: build
-    name: Deploy
     runs-on: [self-hosted, label-go]
     steps:
+      - name: Generate Environment Variables
+        run: |
+          export DOCKERHUB_USERNAME=${{ secrets.DOCKERHUB_USERNAME }}
+          export PYTHON_GRPC_PORT=${{ secrets.PYTHON_GRPC_PORT }}
+          export NEST_GATEWAY_PORT=${{ secrets.NEST_GATEWAY_PORT }}
+
       - name: Login to ghcr
         uses: docker/login-action@v2
         with:
