@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package model;
+
+message ModelParam {
+    string url = 1;
+}
+
+message ModelReturn {
+    string label = 1;
+}
+
+service ModelService {
+    rpc getLabel (ModelParam) returns (ModelReturn) {}
+}
