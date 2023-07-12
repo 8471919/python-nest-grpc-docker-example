@@ -57,12 +57,13 @@ jobs:
           password: ${{ secrets.GHCR_TOKEN }}
 
       - name: Remove Origin Container
+        id: rm-docker-image
         run: |
           docker rm -f $(docker ps -aq)
 
           docker rmi -f $(docker images -q)
 
       - name: Docker run
-        if: failure()
+        if: success() || steps.rm-docker-image.outcome == 'failure'
         run: |
           docker compose up
