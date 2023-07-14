@@ -21,10 +21,7 @@ services:
     command: npm run start
 
   nginx_server:
-    build:
-      context: ./nginx
-      dockerfile: Dockerfile
-    image: nginx_server:latest
+    image: ${DOCKERHUB_USERNAME}/nginx_server:latest
     ports:
       - 80:80
     container_name: nginx_server

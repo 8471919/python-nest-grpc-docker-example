@@ -45,6 +45,15 @@ jobs:
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/nest_gateway
 
+      - name: Proxy Build And Push3
+        uses: docker/build-push-action@v3
+        with:
+          context: ./nginx
+          file: ./nginx/Dockerfile
+          platforms: linux/amd64
+          push: true
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/nginx_server
+
   deploy:
     needs: build
     runs-on: [self-hosted, label-go]
