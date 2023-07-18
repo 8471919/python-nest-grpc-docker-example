@@ -76,6 +76,7 @@ jobs:
           ENV_FILE: ${{ secrets.ENV_FILE }}
 
       - name: Remove Origin Container
+        if: success() || failure()
         id: rm-docker-image
         run: |
           docker rm -f $(docker ps -aq)
