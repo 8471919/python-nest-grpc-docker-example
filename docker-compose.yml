@@ -14,6 +14,8 @@ services:
     image: ${DOCKERHUB_USERNAME}/nest_gateway:latest
     expose:
       - "3000"
+    env_file:
+      - ./.env
     container_name: nest_server
     depends_on:
       - python_server
@@ -21,7 +23,10 @@ services:
     command: npm run start
 
   nginx_server:
-    image: ${DOCKERHUB_USERNAME}/nginx_server:latest
+    build:
+      context: ${DOCKERHUB_USERNAME}/nginx
+      dockerfile: Dockerfile
+    image: nginx_server:latest
     ports:
       - 80:80
     container_name: nginx_server

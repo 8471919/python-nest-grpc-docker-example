@@ -1,20 +1,18 @@
 import { Controller, Get } from '@nestjs/common';
 import { AppService } from './app.service';
-import axios from 'axios';
+import { ConfigService } from '@nestjs/config';
 
 @Controller()
 export class AppController {
-  constructor(private readonly appService: AppService) {}
+  constructor(
+    private readonly appService: AppService,
+    private readonly configService: ConfigService,
+  ) {}
 
   @Get()
   async getHello() {
     console.log('hello');
-    const res = await axios.get('http://python_server:8000/hi');
 
-    console.log(res);
-
-    console.log(res.data);
-
-    return res.data;
+    return this.configService.get('ABC');
   }
 }

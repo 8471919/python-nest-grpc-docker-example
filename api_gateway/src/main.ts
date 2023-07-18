@@ -4,6 +4,10 @@ import { swaggerSetUp } from './config/swagger.config';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
 async function bootstrap() {
+  console.log('hi');
+  console.log(process.env.ABC);
+  console.log('bye');
+
   const app = await NestFactory.create(AppModule);
 
   swaggerSetUp(app);
