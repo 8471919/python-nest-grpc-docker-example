@@ -66,12 +66,12 @@ jobs:
       - name: Remove Origin Environment Variables File
         id: rm-env-file
         run: |
-          sudo rm .env
+          sudo rm ~/.env
 
       - name: Generate Environment Variables File for Production
         if: success() || steps.rm-env-file.outcome == 'failure'
         run: |
-          echo "$ENV_FILE" >> .env
+          echo "$ENV_FILE" >> ~/.env
         env:
           ENV_FILE: ${{ secrets.ENV_FILE }}
 
