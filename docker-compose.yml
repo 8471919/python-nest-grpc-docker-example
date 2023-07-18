@@ -15,7 +15,7 @@ services:
     expose:
       - "3000"
     env_file:
-      - ./.env
+      - ~/.env
     container_name: nest_server
     depends_on:
       - python_server

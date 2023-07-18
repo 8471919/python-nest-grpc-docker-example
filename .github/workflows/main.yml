@@ -61,7 +61,7 @@ jobs:
 
       - name: Generate Environment Variables File for Production
         run: |
-          echo "$ENV_FILE" >> ./.env
+          echo "$ENV_FILE" >> ~/.env
         env:
           ENV_FILE: ${{ secrets.ENV_FILE }}
 
