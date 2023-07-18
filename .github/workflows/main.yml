@@ -21,6 +21,10 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
+      - name: Generate Environment Variables File for Production
+        run: |
+          echo "\n" >> ./api_gateway/.env
+
       - name: Proxy Build And Push1
         uses: docker/build-push-action@v3
         with:
