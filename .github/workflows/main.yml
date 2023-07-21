@@ -90,6 +90,6 @@ jobs:
 
           docker compose build
 
-          ./init-letsencrypt.sh
+          sh ~/init-letsencrypt.sh
 
           docker compose up
