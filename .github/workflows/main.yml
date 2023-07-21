@@ -88,4 +88,8 @@ jobs:
         run: |
           docker compose convert
 
+          docker compose build
+
+          ./init-letsencrypt.sh
+
           docker compose up
