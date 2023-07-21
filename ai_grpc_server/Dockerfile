@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1
 
-FROM python:3.9-slim
+FROM python:3.9-slim-buster
 
 ENV TF_ENABLE_ONEDNN_OPTS=0
 
@@ -14,16 +14,4 @@ ENV PYTHONPATH=.
 
 COPY . .
 
-RUN pip install --upgrade pip && pip install -U setuptools
-
-RUN apt-get -y install libgl1-mesa-glx
-
-RUN apt-get install libglib2.0-0 -y
-
-RUN pip install --upgrade tensorflow
-
-RUN pip install opencv-python
-
-RUN pip install grpcio-tools
-
-RUN pip install pillow
+RUN pip install --upgrade pip && pip install -U setuptools && apt-get -y install libgl1-mesa-glx && apt-get install libglib2.0-0 -y && pip install --upgrade tensorflow && pip install opencv-python && pip install grpcio-tools && pip install pillow
